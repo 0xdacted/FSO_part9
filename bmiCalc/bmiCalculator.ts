@@ -1,25 +1,25 @@
 export const calculateBmi = (h: number, w: number): string => {
-  const heightinM = h / 100
-  const bmi = w / (heightinM * heightinM)
+  const heightinM = h / 100;
+  const bmi = w / (heightinM * heightinM);
   if (bmi < 18.5) {
-    return 'Underweight'
+    return 'Underweight';
   } else if (bmi >= 18.5 && bmi < 25) {
-    return 'Normal (healthy weight)'
+    return 'Normal (healthy weight)';
   } else if (bmi >= 25 && bmi < 30) {
-    return 'Overweight'
+    return 'Overweight';
   } else {
-    return 'Obese'
+    return 'Obese';
   }
-}
+};
 
 try {
-  const height: number = Number(process.argv[2])
-  const weight: number = Number(process.argv[3])
-  console.log(calculateBmi(height, weight))
+  const height = Number(process.argv[2]);
+  const weight = Number(process.argv[3]);
+  console.log(calculateBmi(height, weight));
 } catch (error: unknown) {
-  let errorMessage = 'Something went wrong: '
+  let errorMessage = 'Something went wrong: ';
   if (error instanceof Error) {
-    errorMessage += error.message
+    errorMessage += error.message;
   }
-  console.log(errorMessage)
+  console.log(errorMessage);
 }
