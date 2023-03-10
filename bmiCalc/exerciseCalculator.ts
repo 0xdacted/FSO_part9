@@ -28,4 +28,16 @@ const calculateExercises = (dailyExerciseHours: Array<number>, target: number): 
   }
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+  const args = process.argv.slice(2)
+  if (args.length < 2) throw new Error('Not enough argument')
+  const target = Number(args[0])
+  const dailyExerciseHours = args.slice(1).map(Number)
+  console.log(calculateExercises(dailyExerciseHours, target))
+} catch (error: unknown) {
+  let errorMessage = 'Something went wrong: '
+  if (error instanceof Error) {
+    errorMessage += error.message
+  }
+  console.log(errorMessage)
+}
