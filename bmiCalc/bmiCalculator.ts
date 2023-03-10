@@ -11,3 +11,5 @@ const calculateBmi = (h: number, w: number): string => {
     return 'Obese'
   }
 }
+
+console.log(calculateBmi(185, 85))
