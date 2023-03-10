@@ -1,4 +1,4 @@
-interface ExerciseResult {
+export interface ExerciseResult {
   periodLength: number,
   trainingDays: number,
   success: boolean,
@@ -33,8 +33,7 @@ try {
   const target = Number(args[0]);
   if (isNaN(target)) throw new Error('Target value is not a number!');
 
-  // eslint-disable-next-line
-  const dailyExerciseHours = args.slice(1).map(hours => {
+  args.slice(1).map(hours => {
     const parsedHours = Number(hours);
     if (isNaN(parsedHours)) throw new Error(`Invalid input: ${hours} is not a number!`);
     return parsedHours;
