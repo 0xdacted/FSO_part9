@@ -7,9 +7,10 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use(cors_1.default);
+app.use((0, cors_1.default)());
 const PORT = 3001;
-app.get('/ping', (_req, res) => {
+app.get('/api/ping', (_req, res) => {
+    console.log('user pinging');
     res.send('pong');
 });
 app.listen(PORT, () => {
