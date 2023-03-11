@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const patients_1 = __importDefault(require("../../data/patients"));
+const patientsService_1 = __importDefault(require("../services/patientsService"));
 const patientsRouter = express_1.default.Router();
 patientsRouter.get('/', (_req, res) => {
-    res.send(patients_1.default);
+    res.send(patientsService_1.default.getNonSensitivePatients());
 });
 exports.default = patientsRouter;
