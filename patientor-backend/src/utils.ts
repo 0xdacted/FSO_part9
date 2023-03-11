@@ -8,7 +8,7 @@ const isDate = (date: string): boolean => {
   return Boolean(Date.parse(date));
 };
 
-const isGender = (gender: unknown): gender is Gender => {
+const isGender = (gender: Gender): gender is Gender => {
   return Object.values(Gender).includes(gender);
 };
 
@@ -26,7 +26,7 @@ const parseDate = (date: unknown): string => {
   return date;
 };
 
-const parseGender = (gender: unknown): Gender => {
+const parseGender = (gender: Gender): Gender => {
   if (!gender || !isGender(gender)) {
     throw new Error(`Invalid or missing gender`);
   }
