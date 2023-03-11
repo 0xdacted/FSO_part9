@@ -16,8 +16,8 @@ patientsRouter.post('/', (req, res) => {
     ssn,
     gender,
     occupation,
-
-  )
-})
+  );
+  res.json(addedPatient);
+});
 
 export default patientsRouter;
