@@ -1,10 +1,10 @@
 import express from 'express';
-import patientsData from '../../data/patients';
+import patientsService from '../services/patientsService';
 
 const patientsRouter = express.Router();
 
 patientsRouter.get('/', (_req, res) => {
-  res.send(patientsData)
-})
+  res.send(patientsService.getNonSensitivePatients());
+});
 
 export default patientsRouter;
