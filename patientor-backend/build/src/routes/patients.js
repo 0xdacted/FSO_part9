@@ -9,4 +9,15 @@ const patientsRouter = express_1.default.Router();
 patientsRouter.get('/', (_req, res) => {
     res.send(patientsService_1.default.getNonSensitivePatients());
 });
+patientsRouter.post('/', (req, res) => {
+    const { name, ssn, gender, occupation, dateOfBirth } = req.body;
+    const addedPatient = patientsService_1.default.addPatient({
+        name,
+        ssn,
+        gender,
+        occupation,
+        dateOfBirth
+    });
+    res.json(addedPatient);
+});
 exports.default = patientsRouter;

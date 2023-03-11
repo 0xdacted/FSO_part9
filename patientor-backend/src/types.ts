@@ -10,6 +10,7 @@ export interface Patient {
   ssn: string;
   gender: string;
   occupation: string;
+  dateOfBirth: string;
 }
 
 export type NewPatient = Omit<Patient, 'id'>;

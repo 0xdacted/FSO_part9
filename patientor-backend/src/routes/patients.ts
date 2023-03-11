@@ -9,13 +9,15 @@ patientsRouter.get('/', (_req, res) => {
 });
 
 patientsRouter.post('/', (req, res) => {
-  const { name, ssn, gender, occupation } = req.body;
+  const { name, ssn, gender, occupation, dateOfBirth } = req.body;
 
-  const addedPatient = patientsService.addPatient(
+  const addedPatient = patientsService.addPatient( {
     name,
     ssn,
     gender,
     occupation,
+    dateOfBirth
+  }
   );
   res.json(addedPatient);
 });
