@@ -33,7 +33,7 @@ const parseGender = (gender: unknown): Gender => {
   return gender;
 };
 
-const toNewPatient = (object: unknown): NewPatient => {
+const toNewPatient = (object: any): NewPatient => {
   const addedPatient: NewPatient = {
     name: parseString('name', object.name),
     ssn: parseString('ssn', object.ssn),
