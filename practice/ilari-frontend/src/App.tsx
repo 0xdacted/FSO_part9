@@ -11,9 +11,16 @@ const App = () => {
       setDiaries(data)
     })
   }, [])
-  console.log(diaries)
+
+  const diaryCreation = (event: React.SyntheticEvent) => {
+    event.preventDefault()
+  }
+
   return (
     <div>
+      <form onSubmit={diaryCreation}>
+
+      </form>
       {diaries.map((diary, i) => (
         <div key={i}>
           <h3>{diary.date}</h3>
