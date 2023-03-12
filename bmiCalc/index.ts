@@ -43,7 +43,7 @@ app.post('/exercises', (req, res) => {
     trainingDays: result.trainingDays,
     success: result.success,
     rating: result.rating,
-    ratindDescription: result.ratingDescription,
+    ratingDescription: result.ratingDescription,
     target: result.target,
     average: result.average,
   });
