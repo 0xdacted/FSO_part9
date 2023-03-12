@@ -2,36 +2,42 @@ import { useState } from "react";
 import { NewDiaryEntry, Visibility, Weather } from "../types";
 import { createDiary } from "../services/diaryService";
 
-type Props = {
-  onSubmit: (values: NewDiaryEntry) => void
-};
 
-const DiaryForm = ({ onSubmit }: Props) => {
+const DiaryForm = () => {
   const [date, setDate] = useState('')
   const [weather, setWeather] = useState<Weather>(Weather.Sunny);
   const [visibility, setVisibility] = useState<Visibility>(Visibility.Great);
   const [comment, setComment] = useState('')
+  const [error, setError] = useState<string | null>(null);
 
-  const diaryCreation = (event: React.SyntheticEvent) => {
+  const diaryCreation = async (event: React.SyntheticEvent) => {
     event.preventDefault()
-    onSubmit({ date, weather, visibility, comment })
-    setDate('');
-    setWeather(Weather.Sunny);
-    setVisibility(Visibility.Great);
-    setComment('');
+    try {
+      await createDiary({ date, weather, visibility, comment })
+      setDate('');
+      setWeather(Weather.Sunny);
+      setVisibility(Visibility.Great);
+      setComment('');
+      setError(null);
+    } catch(error: any) {
+      setError(error);
+    }
   };
 
   return (
     <form onSubmit={diaryCreation}>
+      {error && <div>{error}</div>}
       <div>
+        Date:
         <input 
           id="date"
           type="text"
           value={date}
-          onChange{(event) => setDate(event.target.value)}
+          onChange={(event) => setDate(event.target.value)}
           />
       </div>
       <div>
+        Weather: 
         <select
           id="weather"
           value={weather}
@@ -45,7 +51,7 @@ const DiaryForm = ({ onSubmit }: Props) => {
         </select>
       </div>
       <div>
-        <select 
+        Visibility: <select 
           id="visibility"
           value={visibility}
           onChange={(event) => setVisibility(event.target.value as Visibility)}
@@ -58,7 +64,7 @@ const DiaryForm = ({ onSubmit }: Props) => {
         </select>
       </div>
       <div>
-        <textarea
+        Comment: <textarea
         id="comment"
         value={comment}
         onChange={(event) => setComment(event.target.value)}
@@ -68,3 +74,5 @@ const DiaryForm = ({ onSubmit }: Props) => {
     </form>  
     )
 }
+
+export default DiaryForm
