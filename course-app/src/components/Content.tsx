@@ -1,8 +1,4 @@
-export interface CoursePart {
-  name: string;
-  exerciseCount: number;
-}
-
+import { CoursePart } from "../App";
 interface ContentProps {
   courseParts: CoursePart[];
 }
