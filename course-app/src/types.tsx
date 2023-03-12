@@ -1,20 +1,19 @@
-interface CoursePartBasic {
+interface CoursePartBase {
   name: string;
   exerciseCount: number;
+}
+
+interface CoursePartBasic extends CoursePartBase {
   description: string;
   kind: "basic"
 }
 
-interface CoursePartGroup {
-  name: string;
-  exerciseCount: number;
+interface CoursePartGroup extends CoursePartBase {
   groupProjectCount: number;
   kind: "group"
 }
 
-interface CoursePartBackround {
-  name: string;
-  exerciseCount: number;
+interface CoursePartBackround extends CoursePartBase {
   description: string;
   backroundMaterial: string;
   kind: "background"
