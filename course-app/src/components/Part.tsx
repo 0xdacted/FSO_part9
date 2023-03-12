@@ -9,6 +9,7 @@ const Part = ({ coursePart }: PartProps) => {
     case "basic":
       return (
         <div>
+          <p>Description: {coursePart.description}</p>
         </div>
       );
     case "group": 
@@ -24,6 +25,16 @@ const Part = ({ coursePart }: PartProps) => {
           <p>required background material: {coursePart.backroundMaterial}</p>
         </div>
       );
+    case "special":
+      return (
+        <div>
+          <p>Description: {coursePart.description} </p>
+          <p>Requirements: {coursePart.requirements.map((requirement: string, i) => (
+            <div key={i}> {requirement} </div>
+      ))}
+          </p>
+        </div>
+      )
     default:
       return assertNever(coursePart);
   }
