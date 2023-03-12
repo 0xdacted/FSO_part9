@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DiaryEntry, NewDiaryEntry, NonSensitiveDiaryEntry } from '../types'
+import { DiaryEntry, NewDiaryEntry } from '../types'
 
 const baseUrl = 'http://localhost:3001/api/diaries'
 

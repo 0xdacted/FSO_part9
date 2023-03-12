@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NewDiaryEntry, Visibility, Weather } from "../types";
+import { Visibility, Weather } from "../types";
 import { createDiary } from "../services/diaryService";
 
 
@@ -31,7 +31,7 @@ const DiaryForm = () => {
         Date:
         <input 
           id="date"
-          type="text"
+          type="date"
           value={date}
           onChange={(event) => setDate(event.target.value)}
           />
