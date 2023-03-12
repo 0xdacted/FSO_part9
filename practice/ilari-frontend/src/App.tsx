@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { getAllDiaries } from "./services/diaryService";
+import { getAllDiaries, createDiary } from "./services/diaryService";
 import { DiaryEntry, NewDiaryEntry, NonSensitiveDiaryEntry } from './types'
 
 const App = () => {
@@ -12,15 +12,11 @@ const App = () => {
     })
   }, [])
 
-  const diaryCreation = (event: React.SyntheticEvent) => {
-    event.preventDefault()
-  }
+
 
   return (
     <div>
-      <form onSubmit={diaryCreation}>
-
-      </form>
+      
       {diaries.map((diary, i) => (
         <div key={i}>
           <h3>{diary.date}</h3>
