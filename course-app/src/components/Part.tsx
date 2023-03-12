@@ -14,13 +14,13 @@ const Part = ({ coursePart }: PartProps) => {
     case "group": 
       return (
         <div>
-          <p> project exercises {coursePart.groupProjectCount} </p>
+          <p> group exercises: {coursePart.groupProjectCount} </p>
         </div>
       );
     case "background":
       return (
         <div>
-          <p>{coursePart.description}</p>
+          <p>Description: {coursePart.description}</p>
           <p>required background material: {coursePart.backroundMaterial}</p>
         </div>
       );

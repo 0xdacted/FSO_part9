@@ -10,7 +10,7 @@ const Content = (props: ContentProps) => {
       {props.courseParts.map((part, i) => (
         <div key={i}>
         <h3>
-          {part.name} {part.exerciseCount}
+          {part.name}: {part.exerciseCount} exercises
         </h3>
         <Part coursePart={part} />
         </div>
