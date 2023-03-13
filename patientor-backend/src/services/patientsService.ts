@@ -17,12 +17,12 @@ const addPatient = ( patient: NewPatient ): Patient  => {
     id: uuid(),
     ...patient
   };
-  patientsData.push(addedPatient)
-  return addedPatient
-}
+  patientsData.push(addedPatient);
+  return addedPatient;
+};
 
 
 export default {
   getNonSensitivePatients,
   addPatient
-}
+};

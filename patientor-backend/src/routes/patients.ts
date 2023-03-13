@@ -19,4 +19,15 @@ patientsRouter.post('/', (req, res) => {
   }
 });
 
+patientsRouter.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const patient = patientsService.getPatientById(id);
+
+  if (patient) {
+    res.send(patient);
+  } else {
+    res.status(404).send(`Patient with id ${id} not found`);
+  }
+});
+
 export default patientsRouter;
