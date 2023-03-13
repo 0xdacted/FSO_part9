@@ -13,14 +13,14 @@ export enum Gender {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Entry {
   id: string,
+  description: string,
   date: string,
+  specialist: string,
+  diagnosisCodes?: string[]
 }
 
 export interface HospitalEntry extends Entry {
   type: 'Hospital',
-  specialist: string,
-  diagnosisCodes: string[],
-  description: string,
   discharge: {
     date: string,
     criteria: string
@@ -29,10 +29,7 @@ export interface HospitalEntry extends Entry {
 
 export interface OccupationalHealthcareEntry extends Entry {
   type: 'OccupationalHealthcare',
-  specialist: string,
   employerName: string,
-  diagnosisCodes: string[],
-  description: string,
   sickLeave: {
     startDate: string,
     endDate: string
@@ -41,10 +38,6 @@ export interface OccupationalHealthcareEntry extends Entry {
 
 export interface HealthCheckEntry extends Entry {
   type: 'HealthCheck',
-  id: string,
-  date: string,
-  specialist: string,
-  description: string,
   healthCheckRating: number
 }
 
