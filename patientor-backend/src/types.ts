@@ -39,6 +39,15 @@ export interface OccupationalHealthcareEntry extends Entry {
   }
 }
 
+export interface HealthCheckEntry extends Entry {
+  type: 'HealthCheck',
+  id: string,
+  date: string,
+  specialist: string,
+  description: string,
+  healthCheckRating: number
+}
+
 export interface Patient {
   id: string;
   name: string;
