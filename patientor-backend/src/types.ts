@@ -36,18 +36,18 @@ export interface HospitalEntry extends BaseEntry {
 export interface OccupationalHealthcareEntry extends BaseEntry {
   type: 'OccupationalHealthcare',
   employerName: string,
-  sickLeave: {
+  sickLeave?: {
     startDate: string,
     endDate: string
   }
 }
 
-export interface HealthCheckEntry extends Entry {
+export interface HealthCheckEntry extends BaseEntry {
   type: 'HealthCheck',
   healthCheckRating: HealthCheckRating
 }
 
-export type Entry = | HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry
+export type Entry = | HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
 export interface Patient {
   id: string;
@@ -56,10 +56,10 @@ export interface Patient {
   gender: Gender;
   occupation: string;
   dateOfBirth: string;
-  entries: Entry[]
+  entries?: Entry[]
 }
 
 
-export type NewPatient = Omit<Patient, 'id'>;
+export type NewPatient = Omit<Patient, 'id' | 'entries'>;
 export type Diagnoses = Array<Diagnosis>;
 export type NonSensitivePatients = Omit<Patient, 'ssn' | 'entries'>;
