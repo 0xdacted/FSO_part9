@@ -27,6 +27,18 @@ export interface HospitalEntry extends Entry {
   }
 }
 
+export interface OccupationalHealthcareEntry extends Entry {
+  type: 'OccupationalHealthcare',
+  specialist: string,
+  employerName: string,
+  diagnosisCodes: string[],
+  description: string,
+  sickLeave: {
+    startDate: string,
+    endDate: string
+  }
+}
+
 export interface Patient {
   id: string;
   name: string;
