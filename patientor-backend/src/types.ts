@@ -10,16 +10,22 @@ export enum Gender {
   Other = 'other'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Entry {
+
+}
+
 export interface Patient {
   id: string;
   name: string;
   ssn: string;
-  gender: string;
+  gender: Gender;
   occupation: string;
   dateOfBirth: string;
+  entries: Entry[]
 }
 
 
 export type NewPatient = Omit<Patient, 'id'>;
 export type Diagnoses = Array<Diagnosis>;
-export type NonSensitivePatients = Omit<Patient, 'ssn'>;
+export type NonSensitivePatients = Omit<Patient, 'ssn' | 'entries'>;
