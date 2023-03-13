@@ -11,8 +11,20 @@ export enum Gender {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Entry {
+interface Entry {
+  id: string,
+  date: string,
+}
 
+export interface HospitalEntry extends Entry {
+  type: 'Hospital',
+  specialist: string,
+  diagnosisCodes: string[],
+  description: string,
+  discharge: {
+    date: string,
+    criteria: string
+  }
 }
 
 export interface Patient {
