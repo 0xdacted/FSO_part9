@@ -107,8 +107,10 @@ patientsRouter.post('/:id/entries', (req: EntryRequest, res) => {
 
     patient.entries?.push(newEntry);
     res.json(newEntry);
+    return newEntry;
   } else {
     res.status(400).send(`Patient with id ${id} not found`);
+    return null;
   }
 });
 export default patientsRouter;
