@@ -1,8 +1,13 @@
 import express from 'express';
-import { Diagnoses, HealthCheckRating, Entry } from '../types';
+import { Request } from 'express';
+import { Entry } from '../types';
 import patientsService from '../services/patientsService';
 import toNewPatient from '../utils';
 import { v1 as uuid } from 'uuid';
+
+interface EntryRequest extends Request {
+  body: Entry;
+}
 
 const patientsRouter = express.Router();
 
@@ -31,27 +36,27 @@ patientsRouter.get('/:id', (req, res) => {
   }
 });
 
-patientsRouter.post('/:id/entries', (req, res) => {
+patientsRouter.post('/:id/entries', (req: EntryRequest, res) => {
   const id = req.params.id;
   const patient = patientsService.getPatientById(id);
-
-  const parseDiagnosisCodes = (object: unknown): Array<Diagnoses> => {
+  
+  const parseDiagnosisCodes = (object: unknown): Array<string> =>  {
     if (!object || typeof object !== 'object' || !('diagnosisCodes' in object)) {
-      return [] as Array<Diagnoses>;
+      return [];
     }
-
-    return object.diagnosisCodes as Array<Diagnoses>;
+  
+    return object.diagnosisCodes as Array<string>;
   };
-
+  
   if (patient) {
     const { type, description, date, specialist, diagnosisCodes } = req.body;
     if (!type || !description || !date || !specialist) {
       return res.status(400).send('Missing required field');
     }
-    let newEntry: Entry;
+    let newEntry;
     switch (type) {
       case 'Hospital':
-        const discharge = req.body.discharge as { date: string, criteria: string };
+        const { discharge } = req.body;
         if (!discharge || !discharge.date || !discharge.criteria) {
           return res.status(400).send('Missing required field');
         }
@@ -66,8 +71,8 @@ patientsRouter.post('/:id/entries', (req, res) => {
         };
         break;
       case 'OccupationalHealthcare':
-        const sickLeave = req.body.sickLeave as { startDate: string, endDate: string } | undefined;
-        if (!req.body.employerName) {
+        const { employerName, sickLeave } = req.body;
+        if (!employerName) {
           return res.status(400).send('Missing required field');
         }
         newEntry = {
@@ -77,18 +82,19 @@ patientsRouter.post('/:id/entries', (req, res) => {
           date,
           specialist,
           diagnosisCodes: parseDiagnosisCodes(diagnosisCodes),
-          employerName: req.body.employerName,
+          employerName,
           sickLeave
         };
         break;
       case 'HealthCheck':
-        const healthCheckRating = req.body.healthCheckRating as HealthCheckRating;
-        if (healthCheckRating === undefined) {
+        const { healthCheckRating } = req.body;
+        if (!healthCheckRating && healthCheckRating !== 0) {
           return res.status(400).send('Missing required field');
         }
         newEntry = {
           id: uuid(),
           type,
+          description,
           date,
           specialist,
           diagnosisCodes: parseDiagnosisCodes(diagnosisCodes),
